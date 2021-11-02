@@ -87,16 +87,17 @@ export const createContact = async (data: {}) => {
 import { createClient } from "microcms-js-sdk" //ES6
 
 export const client = createClient({
-  serviceDomain: "rura",
-  apiKey: "905f8b65-262a-41b6-8a39-dd16be30f5c2",
+  serviceDomain: process.env.NEXT_PUBLIC_MICRO_CMS_SERVICE_ID,
+  apiKey: process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY,
 })
-
+const fields = "id,title,publishedAt"
 const getAllContents = async (offset = 0, limit = 10) => {
   const data = await client.get({
     endpoint: `news`,
     queries: {
       offset,
       limit,
+      fields,
     },
   })
 

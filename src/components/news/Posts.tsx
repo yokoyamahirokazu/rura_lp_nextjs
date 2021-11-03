@@ -11,8 +11,8 @@ const Posts = ({ id, title, publishedAt }: PostsProps) => {
   return (
     <Link href="/news/[id]" as={`/news/${id}`} passHref>
       <a>
-        {title}
-        {moment(publishedAt).format("Y.M.D")}
+        <p>{title}</p>
+        <p>{moment(publishedAt).format("Y.M.D")}</p>
       </a>
     </Link>
   )

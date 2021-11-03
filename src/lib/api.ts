@@ -79,11 +79,6 @@ export const fetchLatestPosts = async (limit: number): Promise<Post[]> => {
   }
 }
 
-// お問い合わせを作成
-export const createContact = async (data: {}) => {
-  await fetch(`${baseUrl}/contacts`, params("POST", data))
-}
-
 import { createClient } from "microcms-js-sdk" //ES6
 
 export const client = createClient({
@@ -108,5 +103,4 @@ const getAllContents = async (offset = 0, limit = 10) => {
 
   return data.contents
 }
-
 export { getAllContents }

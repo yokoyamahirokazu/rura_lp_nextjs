@@ -4,7 +4,7 @@ export const getStaticProps = async (context) => {
   const slug = context.params?.slug
   const draftKey = context.previewData?.draftKey
   const content = await fetch(
-    `https://rura.microcms.io/api/v1/blog/${slug}${
+    `https://rura.microcms.io/api/v1/news/${slug}${
       draftKey !== undefined ? `?draftKey=${draftKey}` : ""
     }`,
     {

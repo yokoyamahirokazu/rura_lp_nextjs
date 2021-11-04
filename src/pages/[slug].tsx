@@ -1,4 +1,17 @@
 import Post from "../components/news/Post"
+import { GetStaticPaths, GetStaticProps } from "next"
+
+import { getAllContents, fetchPostById } from "../lib/api"
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getAllContents()
+  const paths = posts.map(({ id }) => `/${id}`)
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
 
 export const getStaticProps = async (context) => {
   const slug = context.params?.slug

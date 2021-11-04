@@ -1,11 +1,11 @@
-import Post from "../components/news/Post"
+import Post from "../../components/news/Post"
 import { GetStaticPaths, GetStaticProps } from "next"
 
-import { getAllContents, fetchPostById } from "../lib/api"
+import { getAllContents, fetchPostById } from "../../lib/api"
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllContents()
-  const paths = posts.map(({ id }) => `/${id}`)
+  const paths = posts.map(({ id }) => `/preview/${id}`)
 
   return {
     paths,

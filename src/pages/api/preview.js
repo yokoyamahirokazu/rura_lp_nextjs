@@ -1,6 +1,7 @@
 import fetch from "node-fetch"
 
-export const psotPreview = async (req, res) => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default async (req, res) => {
   if (!req.query.slug) {
     return res.status(404).end()
   }
@@ -23,6 +24,6 @@ export const psotPreview = async (req, res) => {
     slug: content.id,
     draftKey: req.query.draftKey,
   })
-  res.writeHead(307, { Location: `/news/preview/${content.id}` })
+  res.writeHead(307, { Location: `/${content.id}` })
   res.end("Preview mode enabled")
 }

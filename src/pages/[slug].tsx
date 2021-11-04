@@ -1,4 +1,4 @@
-import Post from "../../../components/news/Post"
+import Post from "../components/news/Post"
 
 export const getStaticProps = async (context) => {
   const slug = context.params?.slug
@@ -20,10 +20,20 @@ export const getStaticProps = async (context) => {
   }
 }
 
-const Preview = (content) => {
-  if (!content) {
-    return <>エラー</>
+interface Post {
+  content: {
+    id: string
+    title: string
+    publishedAt: string
+    editorContent: HTMLElement
   }
+}
+
+const BlogId = ({ content }: Post) => {
+  if (!content) {
+    return <div>エラー</div>
+  }
+
   return (
     <div>
       <Post
@@ -36,4 +46,4 @@ const Preview = (content) => {
   )
 }
 
-export default Preview
+export default BlogId

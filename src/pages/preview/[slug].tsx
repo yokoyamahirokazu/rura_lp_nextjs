@@ -29,6 +29,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       content,
+      ...draftKey,
     },
   }
 }
@@ -39,6 +40,7 @@ interface Post {
     title: string
     publishedAt: string
     editorContent: HTMLElement
+    draftKey: string
   }
 }
 
@@ -49,6 +51,11 @@ const BlogId = ({ content }: Post) => {
 
   return (
     <div>
+      {content.draftKey && (
+        <p className={"bg-yellow-100 text-yellow-900 p-4 text-center"}>
+          プレビュー表示がONになっています。
+        </p>
+      )}
       <Post
         id={content.id}
         title={content.title}

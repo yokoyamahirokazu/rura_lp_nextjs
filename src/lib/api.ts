@@ -86,6 +86,7 @@ export const client = createClient({
   apiKey: process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY,
 })
 const fields = "id,title,publishedAt"
+
 const getAllContents = async (offset = 0, limit = 10) => {
   const data = await client.get({
     endpoint: `news`,
@@ -103,4 +104,36 @@ const getAllContents = async (offset = 0, limit = 10) => {
 
   return data.contents
 }
-export { getAllContents }
+const getCaseContents = async (offset = 0, limit = 10) => {
+  const caseData = await client.get({
+    endpoint: `case`,
+    queries: {},
+  })
+
+  if (caseData.offset + caseData.limit <= caseData.totalCount) {
+    const contents = await getCaseContents(
+      caseData.offset + caseData.limit,
+      caseData.limit
+    )
+    return [...caseData.contents, ...contents]
+  }
+
+  return caseData.contents
+}
+const getRecommendContents = async (offset = 0, limit = 10) => {
+  const recommendData = await client.get({
+    endpoint: `recommend`,
+    queries: {},
+  })
+
+  if (recommendData.offset + recommendData.limit <= recommendData.totalCount) {
+    const contents = await getRecommendContents(
+      recommendData.offset + recommendData.limit,
+      recommendData.limit
+    )
+    return [...recommendData.contents, ...contents]
+  }
+
+  return recommendData.contents
+}
+export { getAllContents, getCaseContents, getRecommendContents }

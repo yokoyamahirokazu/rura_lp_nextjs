@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 interface CaseProps {
   id: string
   caseName: string
@@ -22,9 +24,36 @@ const CaseContent = ({
       <p>{caseName}</p>
       <p>{caseType}</p>
       <p>{caseBody}</p>
-      <p>{caseImg}</p>
-      <p>{caseLogo1}</p>
-      <p>{caseLogo2}</p>
+      {caseImg && (
+        <div style={{ position: "relative", width: "100%", height: 150 }}>
+          <Image
+            src={caseImg}
+            layout="fill"
+            objectFit="contain"
+            alt={caseName}
+          />
+        </div>
+      )}
+      {caseLogo1 && (
+        <div style={{ position: "relative", width: "100%", height: 150 }}>
+          <Image
+            src={caseLogo1}
+            layout="fill"
+            objectFit="contain"
+            alt={caseName}
+          />
+        </div>
+      )}
+      {caseLogo2 && (
+        <div style={{ position: "relative", width: "100%", height: 150 }}>
+          <Image
+            src={caseLogo2}
+            layout="fill"
+            objectFit="contain"
+            alt={caseName}
+          />
+        </div>
+      )}
     </div>
   )
 }

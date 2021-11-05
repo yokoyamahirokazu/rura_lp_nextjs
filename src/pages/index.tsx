@@ -59,41 +59,24 @@ const Home = ({ latestPosts, caseItem, recommendItem }) => {
 
       {caseItem?.map((caseList: CaseContent) => (
         <div key={caseList.id}>
-          {(() => {
-            if (caseList.caseLogo2) {
-              return (
-                <CaseContent
-                  id={caseList.id}
-                  caseName={caseList.caseName}
-                  caseType={caseList.caseType}
-                  caseBody={caseList.caseBody}
-                  caseImg={caseList.caseImg.url}
-                  caseLogo1={caseList.caseLogo1.url}
-                  caseLogo2={caseList.caseLogo2.url}
-                />
-              )
-            } else {
-              return (
-                <CaseContent
-                  id={caseList.id}
-                  caseName={caseList.caseName}
-                  caseType={caseList.caseType}
-                  caseBody={caseList.caseBody}
-                  caseImg={caseList.caseImg.url}
-                  caseLogo1={caseList.caseLogo1.url}
-                />
-              )
-            }
-          })()}
+          <CaseContent
+            id={caseList.id}
+            caseName={caseList.caseName}
+            caseType={caseList.caseType}
+            caseBody={caseList.caseBody}
+            caseImg={caseList.caseImg.url}
+            caseLogo1={caseList.caseLogo1.url}
+            caseLogo2={caseList.caseLogo2 && caseList.caseLogo2.url}
+          />
+        </div>
+      ))}
 
-          {recommendItem?.map((recommend) => (
-            <div key={recommend.id}>
-              {recommend.img.url}
-              {recommend.company}
-              {recommend.name}
-              {recommend.body}
-            </div>
-          ))}
+      {recommendItem?.map((recommend) => (
+        <div key={recommend.id}>
+          {recommend.img.url}
+          {recommend.company}
+          {recommend.name}
+          {recommend.body}
         </div>
       ))}
     </div>
